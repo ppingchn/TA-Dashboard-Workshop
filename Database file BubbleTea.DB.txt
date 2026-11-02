@@ -1,0 +1,27 @@
+Database file: BubbleTea.DB
+
+# Relational schema
+Primary keys are underlined. Foreign-key references are listed beneath the schemas.
+RelationName(attributes) One row represents
+Category(category_id, category_name) One category
+Supplier(supplier_id, supplier_name, contact_info) One supplier
+Drink(drink_id, drink_name, current_price, availability_status, category_id, supplier_id) One drink on the menu
+Promotion(promotion_id, start_date, end_date, discount_rate, drink_id) One promotion
+Staff(staff_id, staff_name, role) One staff member
+Orders(order_id, order_time, channel, staff_id) One customer order
+OrderItem(order_id, drink_id, quantity, unit_price) One drink in one order
+
+## Foreign-key references
+Child.attribute → Parent.attribute Child.attribute → Parent.attribute
+Drink.category_id → Category.category_id Drink.supplier_id → Supplier.supplier_id
+Promotion.drink_id → Drink.drink_id Orders.staff_id → Staff.staff_id
+OrderItem.order_id → Orders.order_id OrderItem.drink_id → Drink.drink_id
+
+
+# Business rules and assumptions
+• Each Drink belongs to one Category. A Drink is intended to have one Supplier, but some supplier 
+information may be missing.
+• Each Order belongs to one Staff member and contains one or more OrderItems. An OrderItem refers to one 
+Drink.
+• (order_id, drink_id) identifies one OrderItem. A Drink may have no recorded sales.
+• Historical revenue uses OrderItem.unit_price, not Drink.current_price.
