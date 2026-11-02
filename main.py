@@ -31,6 +31,7 @@ fig = px.bar(
 
 # 3. Simple Dash App
 app = Dash(__name__)
+server = app.server
 app.layout = html.Div([
     html.H1("Bubble Tea Store - Rush Hour Analysis", style={"textAlign": "center"}),
     dcc.Graph(figure=fig)
